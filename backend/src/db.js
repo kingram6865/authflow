@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 let client;
 
 export const initializeDbConnection = async () => {
-    client = await MongoClient.connect('mongodb://localhost:27017', {
+    client = await MongoClient.connect('mongodb://192.168.4.21:27017', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
