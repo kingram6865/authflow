@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom'
+import { Routes } from 'react-router-dom'
 import { publicRoutes, privateRoutes } from './routes'
 
 function App() {
