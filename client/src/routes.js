@@ -7,10 +7,9 @@ import { PrivateRoute } from './auth/PrivateRoute';
 export const publicRoutes = [
   {path: "/login", element: <LogInPage />},
   {path: "/signup", element: <SignUpPage />}
-].map(props => <Route {...props} />)
+].map((props, index) => <Route key={index} {...props} />)
 
 export const privateRoutes = [
   {path: "/", element: <PrivateRoute><UserInfoPage /></PrivateRoute>}
-].map(props => <Route {...props} />)
-
-console.log(privateRoutes)
+  // {path: "/", element: <UserInfoPage />}
+].map((props, index) => <Route key={index} {...props} />)
