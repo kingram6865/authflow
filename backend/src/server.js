@@ -1,11 +1,12 @@
 import express from 'express';
+import cors from 'cors'
 import { routes } from './routes';
 import { initializeDbConnection } from './db';
 
 const PORT = process.env.PORT || 8081;
 
 const app = express();
-
+app.use(cors());
 // This allows us to access the body of POST/PUT
 // requests in our route handlers (as req.body)
 app.use(express.json());
