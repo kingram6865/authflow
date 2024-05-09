@@ -1,4 +1,4 @@
-import { ObjectID } from 'mongodb'
+import { ObjectId } from 'mongodb'
 import jwt from 'jsonwebtoken'
 import { getDbConnection } from '../db'
 
@@ -9,9 +9,10 @@ export const verifyEmailRoute = {
     const { verificationString } = req.body
     const db = getDbConnection('react-auth-db')
     const result = await db.collection('users').findOne({ verificationString })
-    if (!result) return res.status(401).json({ message: "The email verification code is incorrect." })
+    console.log(`verificationString: ${result}`)
+    if (!result) return res.status(401).json({ message: "The email verification code is incorrect.", result })
     const { _id: id, email, info } = result
-    await db.collection('users').updateOne({ _id: ObjectID(id)}, { $set: { isVerified: true }});
+    await db.collection('users').updateOne({ _id: ObjectId(id)}, { $set: { isVerified: true }});
     jwt.sign({ id, email, isVerified: true, info }, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {
       if (err) return res.sendStatus(500);
       res.status(200).json({ token })
