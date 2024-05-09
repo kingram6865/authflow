@@ -11,15 +11,19 @@ export const LogInPage = () => {
   const navigate = useNavigate()
 
   const onLoginClicked = async () => {
-    const response = await axios.post('http://192.168.4.21:8081/api/login', {
-      email: emailValue,
-      password: passwordValue
-    })
+    try {
+      const response = await axios.post('http://192.168.4.21:8081/api/login', {
+        email: emailValue,
+        password: passwordValue
+      })
 
-    console.log(response)
-    const { token } = response.data
-    setToken(token)
-    navigate('/')
+      console.log(response.data)
+      const { token } = response.data
+      setToken(token)
+      navigate('/')
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   return (
