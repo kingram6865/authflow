@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useToken } from '../auth/useToken';
 import { EmailVerificationSuccess } from './EmailVerificationSuccess';
 import { EmailVerificationFail } from './EmailVerificationFail';
-const apiUrl = 'http://apollo:8081'
+// const apiUrl = 'http://apollo:8081'
 
 
 export const EmailVerificationLandingPage = () => {
@@ -16,7 +16,7 @@ const [, setToken] = useToken()
 useEffect(() => {
   const loadVerification = async () => {
     try {
-      const response = await axios.put(`${apiUrl}/api/verify-email`, { verificationString })
+      const response = await axios.put(`http://apollo:8081/api/verify-email`, { verificationString })
       const { token } = response;
       setToken(token);
       setIsSuccess(true);
@@ -27,7 +27,9 @@ useEffect(() => {
       setIsLoading(false)
     }
   }
-}, [])
+
+  loadVerification();
+}, [setToken, verificationString])
 
 
 if (isLoading) return <p>Loading...</p>
