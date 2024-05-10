@@ -36,9 +36,12 @@ export const signUpRoute = {
     const { insertedId } = result;
 
     try {
-      await sendEmail({ to: email, from: 'ken.ingram@gmail.com', subject: "Please verify your email",
-      text: `Thanks for signing up! To verify your email click here:\nhttp://apollo:8081/verify-email/${verificationString}`,
-    })
+      await sendEmail({ 
+        to: email, 
+        from: 'ken.ingram@gmail.com', 
+        subject: "Please verify your email",
+        text: `Thanks for signing up! To verify your email click here:\nhttp://apollo:8081/verify-email/${verificationString}`,
+      })
     } catch(err) {
       console.log(err);
       res.sendStatus(500);
