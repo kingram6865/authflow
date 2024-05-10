@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 import { getDbConnection } from '../db';
-import { sendEmail } from '../util/sendEmail';
 
 export const updateUserInfoRoute = {
   path: '/api/users/:userId',
@@ -22,7 +21,7 @@ export const updateUserInfoRoute = {
       const {id, isVerified } = decoded
 
       if (id !== userId) return res.status(403).json({ message: "Not allowed to update that user's data"});
-      if (!isVerified) return res.status(403).json({ message: "You needto verify your email before you can update data." })
+      if (!isVerified) return res.status(403).json({ message: "You need to verify your email before you can update data." })
 
       const db = getDbConnection('react-auth-db')
       const result = await db.collection('users').findOneAndUpdate(
