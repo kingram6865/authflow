@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken';
 import { v4 as uuid } from 'uuid';
 import { getDbConnection } from '../db';
 import { sendEmail } from '../util/sendEmail';
+// import { Mail } from
+
 
 export const signUpRoute = {
   path: '/api/signup',
@@ -36,12 +38,14 @@ export const signUpRoute = {
     const { insertedId } = result;
 
     try {
-      await sendEmail({ 
+
+      let result = await sendEmail({ 
         to: email, 
         from: 'ken.ingram@gmail.com', 
         subject: "Please verify your email",
-        text: `Thanks for signing up! To verify your email click here:\nhttp://apollo:8081/verify-email/${verificationString}`,
+        text: `Thanks for signing up! To verify your email click here:\n${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT}/verify-email/${verificationString}`,
       })
+      console.log(result)
     } catch(err) {
       console.log(err);
       res.sendStatus(500);
