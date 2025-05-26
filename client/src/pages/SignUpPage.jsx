@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useToken } from '../auth/useToken';
+import { API_URL } from '../config';
 
 export const SignUpPage = () => {
   const [token, setToken] = useToken()
@@ -12,7 +13,7 @@ export const SignUpPage = () => {
   const navigate = useNavigate()
 
   const onSignupClicked = async () => {
-    const response = await axios.post('http://192.168.4.21:8081/api/signup', {
+    const response = await axios.post(`${API_URL}/api/signup`, {
       email: emailValue,
       password: passwordValue
     });

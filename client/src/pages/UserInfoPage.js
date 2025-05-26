@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { useToken } from '../auth/useToken'
 import { useUser } from '../auth/useUser'
-const apiUrl = 'http://192.168.4.21:8081'
+import { API_URL } from '../config';
 
 export const UserInfoPage = () => {
   const user = useUser()
@@ -39,7 +39,7 @@ export const UserInfoPage = () => {
 
   const saveChanges = async () => {
     try {
-      const response = await axios.put(`${apiUrl}/api/users/${id}`, { favoriteFood, hairColor, bio }, {
+      const response = await axios.put(`${API_URL}/api/users/${id}`, { favoriteFood, hairColor, bio }, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
