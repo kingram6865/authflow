@@ -1,5 +1,5 @@
 import { testRoute } from './testRoute';
-import {signUpRoute } from './signUpRoute'
+import { signUpRoute } from './signUpRoute'
 import { logInRoute } from './logInRoute';
 import { updateUserInfoRoute } from './updateUserInfoRoute';
 import { testEmailRoute } from './testEmailRoute';
