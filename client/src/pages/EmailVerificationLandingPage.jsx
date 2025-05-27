@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useToken } from '../auth/useToken';
 import { EmailVerificationSuccess } from './EmailVerificationSuccess';
 import { EmailVerificationFail } from './EmailVerificationFail';
+import { API_URL } from '../config';
+// const apiUrl = `http://${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT}`
 // const apiUrl = 'http://apollo:8081'
 
 
@@ -16,7 +18,7 @@ const [, setToken] = useToken()
 useEffect(() => {
   const loadVerification = async () => {
     try {
-      const response = await axios.put(`http://apollo:8081/api/verify-email`, { verificationString })
+      const response = await axios.put(`${API_URL}/api/verify-email`, { verificationString })
       const { token } = response.data;
       setToken(token);
       setIsSuccess(true);
