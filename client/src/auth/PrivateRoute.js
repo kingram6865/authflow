@@ -14,7 +14,7 @@ export const PrivateRoute = ({ children }) => {
   const user = useUser();
 
   if (!user) return <Navigate to="/login" />
-  console.log(user)
+  // console.log(JSON.stringify(user, null, 2))
   // return <Routes><Route {...children} /></Routes>
   // const isAuthenticated = useAuth();
   // return isAuthenticated ? children : <Navigate to="/login" />;
