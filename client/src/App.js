@@ -1,6 +1,6 @@
 import './App.css';
-import { Routes } from 'react-router-dom'
-import { publicRoutes, privateRoutes } from './routes'
+import { Routes } from 'react-router-dom';
+import { publicRoutes, privateRoutes } from './routes';
 
 function App() {
   return (
