@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { useToken } from '../auth/useToken'
+import { API_URL } from '../config';
+// const apiUrl = `http://${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT}`
+console.log(API_URL)
+const loginApiUrl = `${API_URL}/api/login`
 
 export const LogInPage = () => {
   const [token, setToken] = useToken()
@@ -12,7 +16,7 @@ export const LogInPage = () => {
 
   const onLoginClicked = async () => {
     try {
-      const response = await axios.post('http://192.168.4.21:8081/api/login', {
+      const response = await axios.post(loginApiUrl, {
         email: emailValue,
         password: passwordValue
       })
